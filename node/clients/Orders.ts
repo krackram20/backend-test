@@ -21,8 +21,8 @@ export default class Orders extends JanusClient {
     })
   }
   public async getOrder(orderId:string): Promise<any> {
-
-    return this.http.get(`${URL}/${orderId}`,  {
+    console.log(typeof orderId, orderId)
+    return this.http.get(String(`/api/oms/pvt/orders/${orderId}`),  {
       headers: {
         VtexIdClientAutCookie: this.context.authToken,
       }

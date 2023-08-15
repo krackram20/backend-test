@@ -45,6 +45,7 @@ declare global {
   interface State extends RecorderState {
     orderInfo: ReturnsSchema,
     orderId: string,
+    body: any
   }
 }
 

@@ -1,14 +1,15 @@
-import { json } from 'co-body'
+
 import { UserInputError } from '@vtex/api'
 import { expectedReqProperties } from '../utils/constants'
 
 export async function validateReturn(ctx: Context, next: () => Promise<any>) {
   const {
     clients: { returns: returnsService },
-    state: { orderId }
+    state: { orderId, body }
   } = ctx
 
-  const body = await json(ctx.req)
+  console.log('here')
+  console.log(body, 'here')
 
   const receivedProperties = Object.keys(body);
 
@@ -25,6 +26,8 @@ export async function validateReturn(ctx: Context, next: () => Promise<any>) {
   const { reason, return_method} = body
 
   const result = await returnsService.get(orderId, ["_all"])
+
+  console.log(result)
 
     if (!result) {
 

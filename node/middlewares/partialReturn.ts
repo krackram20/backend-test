@@ -1,14 +1,12 @@
 
-import { json } from 'co-body'
 
 export async function partialReturn(ctx: Context, next: () => Promise<any>) {
   const {
 
     //@ts-ignore
-    state: { orderInfo: { items } }
+    state: { orderInfo: { items }, body }
   } = ctx
 
-  const body = await json(ctx.req)
 
   const { itemsID } = body
 

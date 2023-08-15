@@ -9,7 +9,7 @@ export const deleteReturnData = async (
 
   const { status } = returnData
 
-  if (status !== returnStatus.rejected || status !== returnStatus.paid) {
+  if (status !== returnStatus.rejected && status !== returnStatus.paid) {
     return {
       error: "can't delete non fulfilled return"
     }

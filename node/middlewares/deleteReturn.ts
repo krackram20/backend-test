@@ -12,8 +12,8 @@ export async function deleteReturn(ctx: Context) {
 
       const { status } = returnData
 
-      if (status !== returnStatus.rejected || status !== returnStatus.paid) {
-        throw new UserInputError("can't delete non fulfilled return orders")
+      if (status !== returnStatus.rejected && status !== returnStatus.paid) {
+        throw new UserInputError(`can't delete non fulfilled return orders, status: ${status}` )
       }
 
       const res = returnsService.delete(params.orderId as string)
