@@ -1,5 +1,5 @@
 import { IOClients } from '@vtex/api'
-import { OMS, masterDataFor } from '@vtex/clients'
+import {  masterDataFor } from '@vtex/clients'
 import Orders from './Orders'
 import { ReturnsSchema } from '../typings/returns'
  import TRM  from './trmClient'
@@ -18,9 +18,5 @@ export class Clients extends IOClients {
   }
   public get trmClient() {
     return this.getOrSet('trmClient', TRM)
-  }
-
-  public get oms() {
-    return this.getOrSet('oms', OMS)
   }
 }

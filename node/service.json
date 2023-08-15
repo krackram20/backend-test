@@ -13,6 +13,10 @@
     "returns": {
       "path": "/_v/oms/returns/:orderId",
       "public": true
+    },
+    "createReturn": {
+      "path": "/_v/oms/returns/create",
+      "public": true
     }
   }
 }

@@ -1,0 +1,70 @@
+type ReturnDocument {
+    id: String
+    email: String
+    firstName: String
+    lastName: String
+    status: String
+    reason: String
+    return_method: String
+    conversion_rate: Float
+    items: [Item]
+    value: String
+    comments: String
+    return_amount: Float
+}
+
+type Item {
+  uniqueId: String
+  id: String
+  productId: String
+  ean: String
+  lockId: String
+  quantity: Int
+  seller: String
+  name: String
+  refId: String
+  price: Int
+  listPrice: Int
+  manualPrice: Int
+  imageUrl: String
+  detailUrl: String
+  sellerSku: String
+  priceValidUntil: String
+  commission: Int
+  tax: Int
+  preSaleDate: String
+  additionalInfo: AdditionalInfo
+  measurementUnit: String
+  unitMultiplier: Int
+  sellingPrice: Int
+  isGift: Boolean
+  shippingPrice: Int
+  rewardValue: Int
+  freightCommission: Int
+  taxCode: String
+  parentItemIndex: Int
+  parentAssemblyBinding: String
+  callCenterOperator: String
+  serialNumbers: String
+  costPrice: Int
+}
+
+
+type AdditionalInfo {
+  brandName: String
+  brandId: String
+  categoriesIds: String
+  categories: [Category]
+  productClusterId: String
+  commercialConditionId: String
+  dimension: Dimension
+  offeringInfo: String
+  offeringType: String
+  offeringTypeId: String
+}
+
+type Category {
+  id: Int
+  name: String
+}
+

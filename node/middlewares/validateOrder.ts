@@ -1,14 +1,16 @@
 
 import { NotFoundError } from '@vtex/api'
+import { json } from 'co-body'
 
 export async function validateOrder(ctx: Context, next: () => Promise<any>) {
   const {
-    clients: { ordersClient },
-    vtex: {route: { params }}
+    clients: { ordersClient }
   } = ctx
 
+  const body = await json(ctx.req)
+  ctx.state.orderId = body.orderId
   try {
-    const order = await ordersClient.getOrder(params.orderId as string)
+    const order = await ordersClient.getOrder(body.orderId as string)
 
     const { clientProfileData: {
       email,

@@ -1,4 +1,4 @@
-import type { ClientsConfig, ServiceContext, RecorderState } from '@vtex/api'
+import type { ClientsConfig, ServiceContext, RecorderState, ParamsContext } from '@vtex/api'
 import { LRUCache, method, Service } from '@vtex/api'
 import { Clients } from './clients'
 import { listOrders } from './middlewares/orders'
@@ -8,6 +8,10 @@ import { conversionRate } from './middlewares/conversionRate'
 import { validateReturn } from './middlewares/validateReturn'
 import { getReturn } from './middlewares/getReturn'
 import { updateReturn } from './middlewares/updateReturn'
+import { partialReturn } from './middlewares/partialReturn'
+import { deleteReturn } from './middlewares/deleteReturn'
+import { getReturnData } from './resolvers/getReturnData'
+import { ReturnsSchema } from './typings/returns'
 
 const TIMEOUT_MS = 10000
 
@@ -37,20 +41,36 @@ declare global {
   type Context = ServiceContext<Clients, State>
 
   interface State extends RecorderState {
-    orderInfo: object
+    orderInfo: ReturnsSchema,
+    orderId: string,
   }
 }
 
-export default new Service({
+export default new Service<Clients, RecorderState, ParamsContext>({
   clients,
   routes: {
+    //@ts-ignore
     orders: method({
       GET: [listOrders],
     }),
+    //@ts-ignore
     returns: method({
-      POST: [validateOrder, validateReturn, conversionRate, createReturn],
       GET: [getReturn],
-      PUT: [updateReturn]
+      PUT: [updateReturn],
+      DELETE: [deleteReturn]
+    }),
+    //@ts-ignore
+    createReturn: method({
+      POST: [validateOrder, validateReturn, partialReturn, conversionRate, createReturn],
     }),
   },
+
+  graphql: {
+    resolvers: {
+      Query: {
+        //@ts-ignore
+        getReturnData,
+      }
+    }
+  }
 })

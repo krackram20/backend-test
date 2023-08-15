@@ -8,7 +8,7 @@ export async function conversionRate(ctx: Context, next: () => Promise<any>) {
     //@ts-ignore
     state: { orderInfo: { return_method, value } }
   } = ctx
-
+  //@ts-ignore
   if (!Object.values(validReturnMethods).includes(return_method)) {
     throw new UserInputError("Invalid return method");
   }
@@ -17,7 +17,7 @@ export async function conversionRate(ctx: Context, next: () => Promise<any>) {
     try {
       const trmResponse = await trmService.getConversionRate()
       const {valor } = trmResponse[0]
-      ctx.state.orderInfo = { ...ctx.state.orderInfo, conversion_rate: Number(valor), return_amount: (value/Number(valor)) }
+      ctx.state.orderInfo = { ...ctx.state.orderInfo, conversion_rate: Number(valor), return_amount: (Number(value)/Number(valor)) }
 
     } catch {
       throw new Error("unable to fetch conversion rate")

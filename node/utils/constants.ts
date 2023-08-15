@@ -1,4 +1,4 @@
- export const expectedReqProperties = ["reason", "return_method"];
+ export const expectedReqProperties = ["reason", "return_method", "orderId", "itemsID"];
  export const validReturnMethods = {
   dollars:"us_dollars",
   credit:"store_credit"

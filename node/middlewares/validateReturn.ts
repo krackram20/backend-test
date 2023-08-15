@@ -5,7 +5,7 @@ import { expectedReqProperties } from '../utils/constants'
 export async function validateReturn(ctx: Context, next: () => Promise<any>) {
   const {
     clients: { returns: returnsService },
-    vtex: {route: { params }}
+    state: { orderId }
   } = ctx
 
   const body = await json(ctx.req)
@@ -22,14 +22,16 @@ export async function validateReturn(ctx: Context, next: () => Promise<any>) {
     throw new UserInputError(`Missing properties: ${missingProperties.join(', ')}`)
   }
 
-  const result = await returnsService.get(params.orderId as string, ["_all"])
+  const { reason, return_method} = body
+
+  const result = await returnsService.get(orderId, ["_all"])
 
     if (!result) {
 
-      ctx.state.orderInfo = { ...ctx.state.orderInfo, ...body}
+      ctx.state.orderInfo = { ...ctx.state.orderInfo, reason, return_method}
 
     } else {
-      throw new UserInputError(`return request for order ${params.orderId} already exists`)
+      throw new UserInputError(`return request for order ${orderId} already exists`)
     }
 
   await next()

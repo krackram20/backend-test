@@ -1,0 +1,15 @@
+[
+  {
+    "name": "resolve-graphql",
+    "description": "Allows access to resolve a graphql request",
+    "statements": [
+      {
+        "effect": "allow",
+        "actions": ["post", "get"],
+        "resources": [
+          "vrn:itglobers.return-practice-service:aws-us-east-1:itglobers:kevramirez:/_v/graphql"
+        ]
+      }
+    ]
+  }
+]
