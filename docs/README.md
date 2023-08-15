@@ -106,7 +106,7 @@ Query {
 }
 
 Mutation {
-  deleteReturnData(id: {{orderId}}) {
+  deleteReturnData(id: {{orderId}}) { 
     id,
     error
   }
