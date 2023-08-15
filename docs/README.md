@@ -2,6 +2,9 @@
 
 Simple returns app that stores all processed returns in masterdata.
 
+![returns drawio (2)](https://github.com/krackram20/backend-test/assets/62782975/bb7c22ca-abc7-457c-b1eb-69980e5b61a6)
+
+
 ## Return Document Schema
 
 ```javascript
