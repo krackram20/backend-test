@@ -56,7 +56,7 @@ Raw (JSON):
 
 **Get Return**
 
-Endpoint: `https://{{workspace}}--itglobers.myvtex.com/_v/oms/returns/1353500506549-01`
+Endpoint: `https://{{workspace}}--itglobers.myvtex.com/_v/oms/returns/{{orderId}}`
 
 Returns all fields from MDv2.
 
@@ -64,7 +64,7 @@ Returns all fields from MDv2.
 
 **Delete Return**
 
-Endpoint: `https://{{workspace}}--itglobers.myvtex.com/_v/oms/returns/1353500506549-01`
+Endpoint: `https://{{workspace}}--itglobers.myvtex.com/_v/oms/returns/{{orderId}}`
 
 Deletes return document only if the status is `rechazado` or `pagado`.
 
@@ -72,7 +72,7 @@ Deletes return document only if the status is `rechazado` or `pagado`.
 
 **Update Status**
 
-Endpoint: `https://{{workspace}}--itglobers.myvtex.com/_v/oms/returns/1353500506549-01`
+Endpoint: `https://{{workspace}}--itglobers.myvtex.com/_v/oms/returns/{{orderId}}`
 
 Available status codes: `creado`, `en revision`, `rechazado`, `pagado`.
 
