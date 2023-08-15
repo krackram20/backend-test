@@ -1,0 +1,22 @@
+
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema#",
+  "name": "returns-schema",
+  "title": "returns-schema",
+  "type": "object",
+  "properties": {
+    "reason": {"type": "string"},
+    "email": {"type": "string"},
+    "firstName": {"type": "string"},
+    "lastName": {"type": "string"},
+    "return_method": {"type": "string"},
+    "conversion_rate": {"type": "number"},
+    "return_amount": {"type": "number"},
+    "status": {"type": "string"},
+    "items": {"type": "array"},
+    "value": {"type": "number"},
+    "comments": {"type": "string"}
+  },
+  "v-cache": false
+
+}

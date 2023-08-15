@@ -1,11 +1,15 @@
 import type { ClientsConfig, ServiceContext, RecorderState } from '@vtex/api'
 import { LRUCache, method, Service } from '@vtex/api'
-
 import { Clients } from './clients'
-import { status } from './middlewares/status'
-import { validate } from './middlewares/validate'
+import { listOrders } from './middlewares/orders'
+import { createReturn } from './middlewares/createReturn'
+import { validateOrder } from './middlewares/validateOrder'
+import { conversionRate } from './middlewares/conversionRate'
+import { validateReturn } from './middlewares/validateReturn'
+import { getReturn } from './middlewares/getReturn'
+import { updateReturn } from './middlewares/updateReturn'
 
-const TIMEOUT_MS = 800
+const TIMEOUT_MS = 10000
 
 // Create a LRU memory cache for the Status client.
 // The 'max' parameter sets the size of the cache.
@@ -16,41 +20,37 @@ const TIMEOUT_MS = 800
 const memoryCache = new LRUCache<string, any>({ max: 5000 })
 
 metrics.trackCache('status', memoryCache)
-
-// This is the configuration for clients available in `ctx.clients`.
 const clients: ClientsConfig<Clients> = {
-  // We pass our custom implementation of the clients bag, containing the Status client.
   implementation: Clients,
   options: {
-    // All IO Clients will be initialized with these options, unless otherwise specified.
     default: {
       retries: 2,
-      timeout: TIMEOUT_MS,
+      timeout: TIMEOUT_MS
     },
-    // This key will be merged with the default options and add this cache to our Status client.
-    status: {
+    orders: {
       memoryCache,
     },
   },
 }
 
 declare global {
-  // We declare a global Context type just to avoid re-writing ServiceContext<Clients, State> in every handler and resolver
   type Context = ServiceContext<Clients, State>
 
-  // The shape of our State object found in `ctx.state`. This is used as state bag to communicate between middlewares.
   interface State extends RecorderState {
-    code: number
+    orderInfo: object
   }
 }
 
-// Export a service that defines route handlers and client options.
 export default new Service({
   clients,
   routes: {
-    // `status` is the route ID from service.json. It maps to an array of middlewares (or a single handler).
-    status: method({
-      GET: [validate, status],
+    orders: method({
+      GET: [listOrders],
+    }),
+    returns: method({
+      POST: [validateOrder, validateReturn, conversionRate, createReturn],
+      GET: [getReturn],
+      PUT: [updateReturn]
     }),
   },
 })

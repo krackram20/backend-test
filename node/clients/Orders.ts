@@ -1,0 +1,32 @@
+import type { InstanceOptions, IOContext } from '@vtex/api'
+import { JanusClient } from '@vtex/api'
+
+
+const URL = '/api/oms/pvt/orders'
+
+export default class Orders extends JanusClient {
+  constructor(context: IOContext, options?: InstanceOptions) {
+    super(context, {
+      ...options,
+    })
+  }
+
+  public async getOrders(params?: object): Promise<string> {
+
+    return this.http.get(URL,  {
+      headers: {
+        VtexIdClientAutCookie: this.context.authToken,
+      },
+      params: params ? params : {}
+    })
+  }
+  public async getOrder(orderId:string): Promise<any> {
+
+    return this.http.get(`${URL}/${orderId}`,  {
+      headers: {
+        VtexIdClientAutCookie: this.context.authToken,
+      }
+    })
+  }
+
+}
