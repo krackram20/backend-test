@@ -5,13 +5,7 @@ export const getReturnData = async (
   {id}: { id: string},
   {clients: {returns: returnService} } : Context
 ) => {
-  try {
-    return returnService.get(id, ['_all']
 
-        )
-
-  } catch(error) {
-    return { }
-  }
+    return returnService.get(id, ['_all'])
 
 }

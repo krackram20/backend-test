@@ -11,6 +11,8 @@ import { updateReturn } from './middlewares/updateReturn'
 import { partialReturn } from './middlewares/partialReturn'
 import { deleteReturn } from './middlewares/deleteReturn'
 import { getReturnData } from './resolvers/getReturnData'
+import { deleteReturnData } from './resolvers/deleteReturnData'
+import { updateStatusData } from './resolvers/updateStatusData'
 import { ReturnsSchema } from './typings/returns'
 
 const TIMEOUT_MS = 10000
@@ -70,6 +72,12 @@ export default new Service<Clients, RecorderState, ParamsContext>({
       Query: {
         //@ts-ignore
         getReturnData,
+      },
+      Mutation: {
+        //@ts-ignore
+        updateStatusData,
+        //@ts-ignore
+        deleteReturnData
       }
     }
   }

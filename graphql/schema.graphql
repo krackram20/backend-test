@@ -1,6 +1,14 @@
 type Query {
     getReturnData(id: String): ReturnDocument
 }
+type Mutation {
+    deleteReturnData(id: String): DeleteData,
+    updateStatusData(id: String, status: String, comments: String ): UpdateData,
+}
+
+type  DeleteData {id: String, error: String}
+
+type UpdateData {id: String, error: String}
 
 type ReturnDocument {
     id: String
