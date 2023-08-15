@@ -26,7 +26,7 @@ Simple returns app that stores all processed returns in masterdata.
 
 Endpoint: `https://{{workspace}}--itglobers.myvtex.com/_v/oms/orders`
 
-If no query-params are provided, this endpoint will return all the orders in the last 30 days. All available params can be found [here](#).
+If no query-params are provided, this endpoint will return all the orders in the last 30 days. All available params can be found [here](https://developers.vtex.com/docs/api-reference/orders-api#get-/api/oms/pvt/orders).
 
 ## POST
 
