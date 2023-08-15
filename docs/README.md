@@ -24,7 +24,7 @@ Simple returns app that stores all processed returns in masterdata.
 
 **Get Orders (last 30 days)**
 
-Endpoint: `https://kevramirez--itglobers.myvtex.com/_v/oms/orders`
+Endpoint: `https://{{workspace}}--itglobers.myvtex.com/_v/oms/orders`
 
 If no query-params are provided, this endpoint will return all the orders in the last 30 days. All available params can be found [here](#).
 
@@ -32,7 +32,7 @@ If no query-params are provided, this endpoint will return all the orders in the
 
 **Create Return**
 
-Endpoint: `https://kevramirez--itglobers.myvtex.com/_v/oms/returns/create`
+Endpoint: `https://{{workspace}}--itglobers.myvtex.com/_v/oms/returns/create`
 
 Create a new return request. All properties are mandatory. For a full refund, the `itemsID` array must be empty. For a partial refund, the `itemsID` array must contain the `productId` of each item that the user wants to return. The return method can be either `us_dollars` or `store_credit`. If the return method is US dollars, the conversion rate will be extracted from this [API](https://dev.socrata.com/foundry/www.datos.gov.co/32sa-8pi3).
 
@@ -53,7 +53,7 @@ Raw (JSON):
 
 **Get Return**
 
-Endpoint: `https://kevramirez--itglobers.myvtex.com/_v/oms/returns/1353500506549-01`
+Endpoint: `https://{{workspace}}--itglobers.myvtex.com/_v/oms/returns/1353500506549-01`
 
 Returns all fields from MDv2.
 
@@ -61,7 +61,7 @@ Returns all fields from MDv2.
 
 **Delete Return**
 
-Endpoint: `https://kevramirez--itglobers.myvtex.com/_v/oms/returns/1353500506549-01`
+Endpoint: `https://{{workspace}}--itglobers.myvtex.com/_v/oms/returns/1353500506549-01`
 
 Deletes return document only if the status is `rechazado` or `pagado`.
 
@@ -69,7 +69,7 @@ Deletes return document only if the status is `rechazado` or `pagado`.
 
 **Update Status**
 
-Endpoint: `https://kevramirez--itglobers.myvtex.com/_v/oms/returns/1353500506549-01`
+Endpoint: `https://{{workspace}}--itglobers.myvtex.com/_v/oms/returns/1353500506549-01`
 
 Available status codes: `creado`, `en revision`, `rechazado`, `pagado`.
 
