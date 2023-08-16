@@ -8,9 +8,6 @@ export async function validateReturn(ctx: Context, next: () => Promise<any>) {
     state: { orderId, body }
   } = ctx
 
-  console.log('here')
-  console.log(body, 'here')
-
   const receivedProperties = Object.keys(body);
 
   const invalidProperties = receivedProperties.filter(prop => !expectedReqProperties.includes(prop));
@@ -26,8 +23,6 @@ export async function validateReturn(ctx: Context, next: () => Promise<any>) {
   const { reason, return_method} = body
 
   const result = await returnsService.get(orderId, ["_all"])
-
-  console.log(result)
 
     if (!result) {
 

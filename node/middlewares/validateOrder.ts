@@ -12,7 +12,6 @@ export async function validateOrder(ctx: Context, next: () => Promise<any>) {
   ctx.state.body = {...body}
   try {
     const order = await ordersClient.getOrder(String(body.orderId))
-    console.log(order.clientProfileData,order.items, order.value)
     const { clientProfileData: {
       email,
       firstName,
